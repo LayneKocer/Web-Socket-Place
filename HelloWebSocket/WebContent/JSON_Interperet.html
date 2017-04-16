@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<p id="demo"></p>
+
+<script>
+var text1 = '{"updateType":"refresh", "updateContent":{"boardHeight":4, "boardWidth":4,"board": [[0,0,0,0],[0,0,3,0],[0,4,0,0],[5,0,0,0]] }, "updateTime":"2017-04-15T17:45:28.779Z" }';
+
+var text2 ='{"updateType":"changes","updateContent":[{"color":5,"x":0,"y":3},{"color":4,"x":1,"y":2},{"color":3,"x":2,"y":1}], "updateTime":"2017-04-15T17:45:28.776Z" }';
+
+
+function recieve(text){
+	obj = JSON.parse(text);
+
+	var type = obj.updateType;
+	var content = obj.updateContent;
+	var updateTime = content.updateTime;
+	if(type == "changes"){
+	    for(i=0;i<content.length;i++){
+	        var change = content[i];
+	        setPixel(change.x, change.y, change.color);
+	    }
+	    document.getElementById("demo").innerHTML = type+" "+content.length;
+	}else{
+	    var width = content.boardWidth;
+	    var height = content.boardHeight;
+	    var board = content.board;
+	    for(i=0;i<board.length;i++){
+	        for(j=0;j<board[i].length;j++){
+	            setPixel(j,i,board[i][j]);
+	        }
+	    }
+	    
+	    document.getElementById("demo").innerHTML = type+" "+width + " " +height;
+	}
+}
+
+function setPixel(x,y,color){}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Echo chamber WebSocket</title>
+</head>
+
+<body>
+
+	<div>
+		<input type="text" id="messageinput" />
+	</div>
+	<div>
+		<button type="button" onclick="openSocket();">Open</button>
+		<button type="button" onclick="send();">Send</button>
+		<button type="button" onclick="closeSocket();">Close</button>
+	</div>
+	<div id="messages"></div>
+	<script type="text/javascript">
+		var webSocket;
+		var messages = document.getElementById("messages");
+	
+		function openSocket(){
+			if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
+				writeResponse("WebSocket is already open.");
+				return;
+			}
+			webSocket = new WebSocket("ws://192.168.1.16:8080/HelloWebSocket/websocket");
+			
+			webSocket.onopen = function(event){
+				if(event.data == undefined){
+					return;
+				}
+				writeResponse(event.data);
+			};
+			
+			webSocket.onmessage = function(event){
+				writeResponse(event.data);
+			};
+			
+			webSocket.onclose = function(event){
+				writeResponse("Connection Closed");
+			};
+		}
+		
+		function send(){
+			var text = document.getElementById("messageinput").value;
+			webSocket.send(text);
+		}
+		
+		function closeSocket(){
+			webSocket.close();
+		}
+		
+		function writeResponse(text){
+			messages.innerHTML += "<br/>" + text;
+		}
+	</script>
+
+</body>
+</html>
