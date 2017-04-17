@@ -39,7 +39,7 @@ public class PlaceBoard {
 			}
 		}
 	}
-	q
+	
 	public void updateChanges(){
 		//Remove older elements until maxSize is reached.
 		while(changes.size() > trimSize){
