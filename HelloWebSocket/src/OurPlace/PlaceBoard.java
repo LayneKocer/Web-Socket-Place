@@ -1,17 +1,26 @@
 package OurPlace;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.*;
+import java.util.Iterator;
 import java.util.Vector;
 //import java.util.concurrent.TimeUnit;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class PlaceBoard {
 	
 	private int height;
 	private int width;
+	// import Board data
 	private int[][] data;
 	private Vector<PixelChange> changes;
 	private int trimSize;
@@ -181,6 +190,63 @@ public class PlaceBoard {
 		data[y][x] = color;
 	}
 
+	public void loadBoard(){
+		String content = null;
+		try {
+			content = readFile("C:/Users/John Galt/Workspace/JEE/HelloWebSocket/build/BoardState.json", Charset.defaultCharset());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// System.out.println(content);
+		
+		JSONParser parser = new JSONParser();
+		JSONObject obj = null;
+		JSONArray mapping = null;
+		try {
+			obj = (JSONObject)parser.parse(content);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mapping = (JSONArray) obj.get("board");
+		Iterator<JSONArray> iterator = mapping.iterator();
+		for(int y=0; y<height && iterator.hasNext(); y++){
+			JSONArray colors = iterator.next();
+			Iterator<Long> colorLayer = colors.iterator();
+			for(int x=0; x<width && colorLayer.hasNext(); x++){
+				String tmp = colorLayer.next().toString();
+				data[y][x] = Integer.parseInt(tmp);
+			}
+		}		
+	}
+	
+	public void saveBoard(String boardState){
+		JSONParser parser = new JSONParser();
+		JSONObject obj = null;
+		try {
+			obj = (JSONObject)parser.parse(boardState);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boardState = obj.get("updateContent").toString();
+		try{
+		    PrintWriter writer = new PrintWriter("C:/Users/John Galt/Workspace/JEE/HelloWebSocket/build/BoardState.json");
+		    writer.println(boardState);
+		    writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static String readFile(String path, Charset encoding) 
+		throws IOException {
+		byte[] encoded = Files.readAllBytes(Paths.get(path));
+		return new String(encoded, encoding);
+	}
+	
 	public class PixelChange{
 		public Instant stamp;
 		public int x,y,color;

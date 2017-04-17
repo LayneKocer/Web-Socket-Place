@@ -11,318 +11,49 @@
 		</canvas>
 
  		<div id="inputfield">
-			<button type="button"  style="background-color: #ff0000" onclick="color = setColor(6)" >Red</button>
-			<button type="button"  style="background-color: #ffa500" onclick="color = setColor(4)" >Orange</button>
+			<button type="button"  style="background-color: #ffffff" onclick="color = setColor(0)" ><!-- Red --></button>
+			<button type="button"  style="background-color: #fe3b1e" onclick="color = setColor(1)" ><!-- Orange --></button>
+			<button type="button"  style="background-color: #a12c32" onclick="color = setColor(2)" ><!-- Yellow --></button>
+			<button type="button"  style="background-color: #fa2f7a" onclick="color = setColor(3)" ><!-- Green --></button>
 
-			<button type="button"  style="background-color: #ffff00" onclick="color = setColor(3)" >Yellow</button>
-			<button type="button"  style="background-color: #00ff00" onclick="color = setColor(1)" >Green</button>
+			<button type="button"  style="background-color: #fb9fda" onclick="color = setColor(4)" ><!-- LTGreen --></button>
+			<button type="button"  style="background-color: #e61cf7" onclick="color = setColor(5)" ><!-- SNBlue --></button>
+			<button type="button"  style="background-color: #992f7c" onclick="color = setColor(6)" ><!-- Blue --></button>
+			<button type="button"  style="background-color: #ff0000" onclick="color = setColor(7)" ><!-- Plurple --></button>
 
-			<button type="button"  style="background-color: #1bd953" onclick="color = setColor(0)" >LTGreen</button>
-			<button type="button"  style="background-color: #3f4afa" onclick="color = setColor(9)" >SNBlue</button>
+			<button type="button"  style="background-color: #051155" onclick="color = setColor(8)" ><!-- Black --></button>
+			<button type="button"  style="background-color: #4f02ec" onclick="color = setColor(9)" ><!-- White --></button>
+			<button type="button"  style="background-color: #2d69cb" onclick="color = setColor(10)" ><!-- Red --></button>
+			<button type="button"  style="background-color: #00a6ee" onclick="color = setColor(11)" ><!-- Orange --></button>
 
-			<button type="button"  style="background-color: #0000ff" onclick="color = setColor(2)" >Blue</button>
-			<button type="button"  style="background-color: #ff00ff" onclick="color = setColor(10)" >Plurple</button>
+			<button type="button"  style="background-color: #6febff" onclick="color = setColor(12)" ><!-- Yellow --></button>
+			<button type="button"  style="background-color: #08a29a" onclick="color = setColor(13)" ><!-- Green --></button>
+			<button type="button"  style="background-color: #2a666a" onclick="color = setColor(14)" ><!-- LTGreen --></button>
+			<button type="button"  style="background-color: #063619" onclick="color = setColor(15)" ><!-- SNBlue --></button>
+		</div>
+ 		<div id="inputfield">
+			<button type="button"  style="background-color: #000000" onclick="color = setColor(16)" ><!-- Red --></button>
+			<button type="button"  style="background-color: #4a4957" onclick="color = setColor(17)" ><!-- Orange --></button>
+			<button type="button"  style="background-color: #8e7ba4" onclick="color = setColor(18)" ><!-- Yellow --></button>
+			<button type="button"  style="background-color: #b7c0ff" onclick="color = setColor(19)" ><!-- Green --></button>
 
-			<button type="button"  style="background-color: #000000" onclick="color = setColor(5)" >Black</button>
-			<button type="button"  style="background-color: #ffffff" onclick="color = setColor(8)" >White</button>
+			<button type="button"  style="background-color: #d6a090" onclick="color = setColor(20)" ><!-- LTGreen --></button>
+			<button type="button"  style="background-color: #acbe9c" onclick="color = setColor(21)" ><!-- SNBlue --></button>
+			<button type="button"  style="background-color: #827c70" onclick="color = setColor(22)" ><!-- Blue --></button>
+			<button type="button"  style="background-color: #5a3b1c" onclick="color = setColor(23)" ><!-- Plurple --></button>
+
+			<button type="button"  style="background-color: #ae6507" onclick="color = setColor(24)" ><!-- Black --></button>
+			<button type="button"  style="background-color: #f7aa30" onclick="color = setColor(25)" ><!-- White --></button>
+			<button type="button"  style="background-color: #f4ea5c" onclick="color = setColor(26)" ><!-- Red --></button>
+			<button type="button"  style="background-color: #9b9500" onclick="color = setColor(27)" ><!-- Orange --></button>
+
+			<button type="button"  style="background-color: #566204" onclick="color = setColor(28)" ><!-- Yellow --></button>
+			<button type="button"  style="background-color: #11963b" onclick="color = setColor(29)" ><!-- Green --></button>
+			<button type="button"  style="background-color: #51e113" onclick="color = setColor(30)" ><!-- LTGreen --></button>
+			<button type="button"  style="background-color: #08fdcc" onclick="color = setColor(31)" ><!-- SNBlue --></button>
 		</div>
 
 		<div id="messages"></div>
-		<script type="text/javascript">
-
-			var color = "#ffffff";
-			var colorVal = 8;
-			
-			var webSocket;
-	        var messages = document.getElementById("messages");
-
-	        var request = '{"type":"type", "msg": {"lastUpdate":"-1000000000-01-01T00:00Z"}  }' ;
-			
-	        var updateTime = "-1000000000-01-01T00:00:00Z";
-	        				  
-	        
-	        setInterval(requestUpdate, 1000);
-
-			var size = document.getElementById("myCanvas").width;
-			var grids = 60;
-
-			var pixlSize = size/grids;
-
-			var canvas = document.getElementById("myCanvas");
-			var ctx = canvas.getContext("2d");
-
-			canvas.addEventListener('click', function(event) { 
-			    var rect = canvas.getBoundingClientRect();
-			    var x = event.clientX - rect.left;
-			    var y = event.clientY - rect.top;
-			    x = Math.trunc(x/pixlSize);
-			    y = grids - Math.trunc(y/pixlSize) - 1;
-			    console.log("x: " + x + " y: " + y);
-			    clickSend(x, y);
-			}, false);
-
-			var messages = document.getElementById("messages");
-
-			//setBoard();
-
-			openSocket();
-			// OPEN WEBSOCKET INTERFACE (needs to be called)
-            function openSocket(){
-                // Ensures only one connection is open at a time
-                if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
-                	writeResponse("WebSocket is already opened.");
-                	return;
-                }
-                
-                // Create a new instance of the websocket  // TODO update ws:url
-                webSocket = new WebSocket("ws://58b9fd17.ngrok.io/HelloWebSocket/GridCanvasWebsocket");
-                // webSocket = new WebSocket("ws://192.168.1.16:8080/HelloWebSocket/GridCanvasWebsocket");
-                
-                
-                // Binds functions to the listeners for the websocket.
-                 
-                webSocket.onopen = function(event){
-                    if(event.data === undefined){
-                        return;
-                    }
-                    // event.data should hava refresh update type, board;
-                    writeResponse(event.data);
-                    recieve(event.data);
-                };
- 
-                webSocket.onmessage = function(event){
-                    // event.data = json file recieved
-                    recieve(event.data);
-                    writeResponse(event.data);
-                };
- 
-                webSocket.onclose = function(event){
-                    writeResponse("Connection closed what fuck");
-                };
-            }
-            
-            
-            // Sends the value of the text input to the server
-             
-            function send(json){
-            	// text is json place request
-
-                webSocket.send(placeRequest);
-            }
-           
-            function requestUpdate(){
-                webSocket.send('{"type":"update", "msg": {"lastUpdate": "' + updateTime + '"}  }');
-            }
-
-            function closeSocket(){
-                webSocket.close();
-            }
- 
-            function writeResponse(text){
-               // messages.innerHTML += "<br/>" + text;
-            }
-
-			function setBoard(){
-				for (var i = size/grids; i < size; i+=(size/grids)) {
-					ctx.beginPath();
-					ctx.moveTo(i,0);
-					ctx.lineTo(i,size);
-					ctx.stroke();
-
-					ctx.beginPath();
-					ctx.moveTo(0,i);
-					ctx.lineTo(size,i);
-					ctx.stroke();
-				}
-			}
-
-			function drawSquare(x,y){
-				ctx.fillRect(x*pixlSize,(grids-y-1)*pixlSize,pixlSize,pixlSize);
-			}
-
-			function recieve(text){
-				console.log("Undefined :: " + text);
-				obj = JSON.parse(text);
-
-				var type = obj.updateType;
-				var content = obj.updateContent;
-				updateTime = obj.updateTime;
-				console.log("Undefined :: " + updateTime);
-				
-				if(type == "changes"){
-				    for(i=0;i<content.length;i++){
-				        var change = content[i];
-				        setPixel(change.x, change.y, change.color);
-				    }
-				    // document.getElementById("demo").innerHTML = type+" "+content.length;
-				}else{
-				    var width = content.boardWidth;
-				    var height = content.boardHeight;
-				    var board = content.board;
-				    for(i=0;i<board.length;i++){
-				        for(j=0;j<board[i].length;j++){
-				            setPixel(j,i,board[i][j]);
-				        }
-				    }
-				    
-				   // document.getElementById("demo").innerHTML = type+" "+width + " " +height;
-				}
-			}
-
-
-			// takes a value 1-6  [red, green, blue, yellow, orange, black, white]
-			function getColor(num){
-				var colorLoc;
-				switch(num){
-					case 0: // sanic background
-					colorLoc = "#1bd953";
-					//colorVal = 0;
-					break;
-
-					case 1: // green
-					colorLoc = "#00ff00";
-					// colorVal = 1;
-					break;
-					
-					case 2: // blue
-					colorLoc = "#0000ff";
-					// colorVal = 2;
-					break;
-					
-					case 3: // yellow
-					colorLoc = "#ffff00";
-					// colorVal = 3;
-					break;
-					
-					case 4: // orange
-					colorLoc = "#ffa500";
-					// colorVal = 4;
-					break;
-					
-					case 5: // black
-					colorLoc = "#000000";
-					// colorVal = 5;
-					break;
-					
-					case 6: // white
-					colorLoc = "#ff0000";
-					// colorVal = 6;
-					break;
-					
-					case 7: // sanic skin
-					colorLoc = "#ffd78f";
-					// colorVal = 7;
-					break;
-
-					case 8: // white
-					colorLoc = "#ffffff"
-					// colorVal = 8;
-					break;
-
-					case 9: // sanic blue
-					colorLoc = "#3f4afa"
-					// colorVal = 9;
-					break;
-
-					default: // plurple
-					colorLoc = "#ff00ff"
-					// colorVal = 10;
-					break;
-				}
-				return colorLoc;
-			}
-
-						// takes a value 1-6  [red, green, blue, yellow, orange, black, white]
-			function setColor(num){
-				
-				switch(num){
-					case 0: // sanic background
-					// colorLoc = "#1bd953";
-					colorVal = 0;
-					break;
-
-					case 1: // green
-					//colorLoc = "#00ff00";
-					colorVal = 1;
-					break;
-					
-					case 2: // blue
-					//colorLoc = "#0000ff";
-					colorVal = 2;
-					break;
-					
-					case 3: // yellow
-					//colorLoc = "#ffff00";
-					colorVal = 3;
-					break;
-					
-					case 4: // orange
-					//color = "#ffa500";
-					colorVal = 4;
-					break;
-					
-					case 5: // black
-					// color = "#000000";
-					colorVal = 5;
-					break;
-					
-					case 6: // white
-					// color = "#ff0000";
-					colorVal = 6;
-					break;
-					
-					case 7: // sanic skin
-					// color = "#ffd78f";
-					colorVal = 7;
-					break;
-
-					case 8: // white
-					// color = "#ffffff"
-					colorVal = 8;
-					break;
-
-					case 9: // sanic blue
-//					color = "#3f4afa"
-					colorVal = 9;
-					break;
-
-					default: // plurple
-//					color = "#ff00ff"
-					colorVal = 10;
-					break;
-				}
-				return getColor(colorVal);
-			}
-
-			
-			function onSend(){
-				// ctx.fillStyle = document.getElementById("color").value;
-				// ctx.fillStyle = getColor(parseInt(document.getElementById("color").value, 10));
-				ctx.fillStyle = getColor(colorVal);
-				drawSquare(document.getElementById("xcord").value,document.getElementById("ycord").value);
-				//setBoard();
-			}
-
-			function clickSend(x,y){
-				// ctx.fillStyle = getColor(parseInt(document.getElementById("color").value, 10));
-				ctx.fillStyle = getColor(colorVal);;
-				drawSquare(x, y);
-				var message = '{"type":"place", "msg": {"x": ' + x + ', "y":' + y + ', "color":'+ colorVal +'} }';
-				//console.log(message);
-				webSocket.send(message);
-			}
-
-			function setPixel(x,y,colornum){
-				ctx.fillStyle = getColor(colornum);
-				drawSquare(x, y);
-				//console.log('"x": ' + x + ', "y":' + y + ', "color":'+ color);
-			}
-
-			
-			function onClick(x){
-				alert("funck");
-			}
-
-		</script>
+		<script type="text/javascript" src="WebSocket.js" ></script>
 	</body>
 </html>
