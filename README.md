@@ -1,5 +1,5 @@
-# WesocketPlace
-A really bad version of r/place
+# Web Socket Place
+A pretty usable version of r/place
 
 ### see it here!
 
