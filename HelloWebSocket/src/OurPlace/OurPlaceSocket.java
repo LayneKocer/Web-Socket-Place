@@ -25,6 +25,10 @@ public class OurPlaceSocket {
 	public static long lastTime;
 	public static final long waitTime = 5000;
 	
+	public OurPlaceSocket(){
+		System.out.println("The Constructor was called");
+	}
+	
 	@OnOpen
 	public void onOpen(Session session){
 		if(this.board == null){
@@ -77,6 +81,7 @@ public class OurPlaceSocket {
 	
 	@OnClose
 	public void onClose(Session session){
+		
 		System.out.println("Session " + session.getId() + " has ended.");
 		for(int i=0; i< connection.size(); i++){
 			if(connection.get(i).session.getId() == session.getId() ){

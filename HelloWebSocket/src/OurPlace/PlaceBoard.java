@@ -25,6 +25,54 @@ public class PlaceBoard {
 	private Vector<PixelChange> changes;
 	private int trimSize;
 	private Instant oldest;
+
+/*	public static void main(String[] args) throws InterruptedException {
+		PlaceBoard board = new PlaceBoard(4,4);
+
+		String place1 = "{\"x\":2, \"y\":1, \"color\":3}";
+		String place2 = "{\"x\":1, \"y\":2, \"color\":4}";
+		String place3 = "{\"x\":0, \"y\":3, \"color\":5}";
+		String update1 = "{\"lastUpdate\":\"-1000000000-01-01T00:00:00Z\"}";
+		
+		String updateReq1 = "{\"type\":\"update\", \"msg\": "+update1+"  }";
+		String placeReq1 = "{\"type\":\"place\", \"msg\": "+place1+" }";
+		String placeReq2 = "{\"type\":\"place\", \"msg\": "+place2+" }";
+		String placeReq3 = "{\"type\":\"place\", \"msg\": "+place3+" }";
+		
+		board.printBoard();
+		TimeUnit.MILLISECONDS.sleep(100);
+		String t1 = Instant.now().toString();
+		System.out.println( board.handleRequest(updateReq1) );
+		System.out.println( board.handleRequest(placeReq1) );
+		TimeUnit.MILLISECONDS.sleep(100);
+		System.out.println( board.handleRequest(placeReq2) );
+		TimeUnit.MILLISECONDS.sleep(100);
+		String t2 = Instant.now().toString();
+		System.out.println( board.handleRequest(placeReq3) );
+		TimeUnit.MILLISECONDS.sleep(100);
+		String t3 = Instant.now().toString();
+		
+		
+		String update2 = "{\"lastUpdate\":\""+t1+"\"}";
+		String updateReq2 = "{\"type\":\"update\", \"msg\": "+update2+"  }";
+
+		String update3 = "{\"lastUpdate\":\""+t2+"\"}";
+		String updateReq3 = "{\"type\":\"update\", \"msg\": "+update3+"  }";
+		
+		String update4 = "{\"lastUpdate\":\""+t3+"\"}";
+		String updateReq4 = "{\"type\":\"update\", \"msg\": "+update4+"  }";
+		System.out.println(updateReq4);
+		System.out.println(placeReq1);
+		System.out.println("*****");
+		System.out.println( board.handleRequest(updateReq2) );
+		System.out.println( board.handleRequest(updateReq3) );
+		System.out.println( board.handleRequest(updateReq4) );
+		System.out.println( board.handleRequest(updateReq1) );
+		
+		board.updateChanges();
+		board.printBoard();
+	}
+*/	
 	
 	public PlaceBoard(int h, int w){
 		height = h;
