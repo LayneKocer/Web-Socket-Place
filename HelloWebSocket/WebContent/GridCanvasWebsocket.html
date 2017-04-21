@@ -6,54 +6,28 @@
 		<link type="text/css" rel="stylesheet"  href="game.css">
 		<!-- Game Files -->
 	</head>
+	
 	<body>
-		<canvas id="myCanvas" width="1000" height="1000" >
-		</canvas>
-
- 		<div id="inputfield">
-			<button type="button"  style="background-color: #ffffff" onclick="color = setColor(0)" ><!-- Red --></button>
-			<button type="button"  style="background-color: #fe3b1e" onclick="color = setColor(1)" ><!-- Orange --></button>
-			<button type="button"  style="background-color: #a12c32" onclick="color = setColor(2)" ><!-- Yellow --></button>
-			<button type="button"  style="background-color: #fa2f7a" onclick="color = setColor(3)" ><!-- Green --></button>
-
-			<button type="button"  style="background-color: #fb9fda" onclick="color = setColor(4)" ><!-- LTGreen --></button>
-			<button type="button"  style="background-color: #e61cf7" onclick="color = setColor(5)" ><!-- SNBlue --></button>
-			<button type="button"  style="background-color: #992f7c" onclick="color = setColor(6)" ><!-- Blue --></button>
-			<button type="button"  style="background-color: #ff0000" onclick="color = setColor(7)" ><!-- Plurple --></button>
-
-			<button type="button"  style="background-color: #051155" onclick="color = setColor(8)" ><!-- Black --></button>
-			<button type="button"  style="background-color: #4f02ec" onclick="color = setColor(9)" ><!-- White --></button>
-			<button type="button"  style="background-color: #2d69cb" onclick="color = setColor(10)" ><!-- Red --></button>
-			<button type="button"  style="background-color: #00a6ee" onclick="color = setColor(11)" ><!-- Orange --></button>
-
-			<button type="button"  style="background-color: #6febff" onclick="color = setColor(12)" ><!-- Yellow --></button>
-			<button type="button"  style="background-color: #08a29a" onclick="color = setColor(13)" ><!-- Green --></button>
-			<button type="button"  style="background-color: #2a666a" onclick="color = setColor(14)" ><!-- LTGreen --></button>
-			<button type="button"  style="background-color: #063619" onclick="color = setColor(15)" ><!-- SNBlue --></button>
+	<!-- <div id="console-debug">
+			<div id="console">
+				<li >~Debugging Console</li>
+				<li > </li>
+				<li >user@space:~$ Hello World</li>
+				<li >[ Primary Objective ]</li>
+				<li >::> Log active user data</li>
+				<li >::> Chat?</li>
+			</div>
+		</div> -->
+		<div>
+			<canvas id="myCanvas" width="75" height="75" ></canvas>
 		</div>
- 		<div id="inputfield">
-			<button type="button"  style="background-color: #000000" onclick="color = setColor(16)" ><!-- Red --></button>
-			<button type="button"  style="background-color: #4a4957" onclick="color = setColor(17)" ><!-- Orange --></button>
-			<button type="button"  style="background-color: #8e7ba4" onclick="color = setColor(18)" ><!-- Yellow --></button>
-			<button type="button"  style="background-color: #b7c0ff" onclick="color = setColor(19)" ><!-- Green --></button>
-
-			<button type="button"  style="background-color: #d6a090" onclick="color = setColor(20)" ><!-- LTGreen --></button>
-			<button type="button"  style="background-color: #acbe9c" onclick="color = setColor(21)" ><!-- SNBlue --></button>
-			<button type="button"  style="background-color: #827c70" onclick="color = setColor(22)" ><!-- Blue --></button>
-			<button type="button"  style="background-color: #5a3b1c" onclick="color = setColor(23)" ><!-- Plurple --></button>
-
-			<button type="button"  style="background-color: #ae6507" onclick="color = setColor(24)" ><!-- Black --></button>
-			<button type="button"  style="background-color: #f7aa30" onclick="color = setColor(25)" ><!-- White --></button>
-			<button type="button"  style="background-color: #f4ea5c" onclick="color = setColor(26)" ><!-- Red --></button>
-			<button type="button"  style="background-color: #9b9500" onclick="color = setColor(27)" ><!-- Orange --></button>
-
-			<button type="button"  style="background-color: #566204" onclick="color = setColor(28)" ><!-- Yellow --></button>
-			<button type="button"  style="background-color: #11963b" onclick="color = setColor(29)" ><!-- Green --></button>
-			<button type="button"  style="background-color: #51e113" onclick="color = setColor(30)" ><!-- LTGreen --></button>
-			<button type="button"  style="background-color: #08fdcc" onclick="color = setColor(31)" ><!-- SNBlue --></button>
+		<div id="inputfield">
+	 		<div id="topButton"></div>
+	 		<div id="botButton"></div>
 		</div>
-
+		
 		<div id="messages"></div>
+		
 		<script type="text/javascript" src="WebSocket.js" ></script>
 	</body>
 </html>

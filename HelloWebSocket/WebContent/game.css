@@ -6,6 +6,11 @@ body {
 }
 
 canvas {
+	image-rendering: optimizeSpeed;
+	image-rendering: crisp-edges;
+	
+	width: 1000px;
+	height: 1000px;
 	background-color: #ffffff;
     padding-left: 0;
     padding-right: 0;
@@ -25,12 +30,30 @@ button {
 	border-radius: 25px;
 }
 
+li {
+    font-family: monospace;
+	font-size: 14px;
+	margin-left: 0px;
+}
+
+#console-debug {
+	float: left;
+	margin-left: 15px;
+	width: 480px;
+}
+
+#console {
+ 	background-color: #333333;
+ 	color: #cccccc;
+ 	border: 3px solid #000000;
+ 	height: 1000px;
+ 	width: 100%;
+}
+
 #inputfield {
     border:10px;
     text-align: center;
-/* position:absolute;
-bottom:0;
- */}
+}
 
 #messages {
 	background-color: #888888;
